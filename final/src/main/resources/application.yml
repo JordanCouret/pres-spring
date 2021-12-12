@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://${JDBC_URL:localhost}:${JDBC_PORT:6789}/${JDBC_DB:postgres}
+    username: ${JDBC_USER:postgres}
+    password: ${JDBC_PASSWORD:postgres}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        default_schema: public
+    hibernate:
+      ddl-auto: update

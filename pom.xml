@@ -25,6 +25,7 @@
 
   <modules>
     <module>native</module>
+    <module>data</module>
   </modules>
 
 </project>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+  <bean id="userDAO" class="io.jcorporation.core.UserDAO">
+  </bean>
+
+  <bean id="userServiceProxy" class="io.jcorporation.core.UserServiceProxy">
+    <constructor-arg index="0" ref="userDAO"/>
+  </bean>
+
+  <bean id="userTransactionProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+    <property name="target">
+      <bean class="io.jcorporation.core.UserService">
+        <constructor-arg index="0" ref="userDAO"/>
+      </bean>
+    </property>
+    <property name="interceptorNames">
+      <list>
+        <value>userServiceProxy</value>
+      </list>
+    </property>
+  </bean>
+</beans>
+
